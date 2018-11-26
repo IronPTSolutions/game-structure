@@ -5,6 +5,7 @@ function Game(canvasElement) {
 
   this.bg = new Background(this.ctx);
   this.pl = new Player(this.ctx);
+  this.pl2= new Player2(this.ctx)
   this.bl = new Ball(this.ctx);
 }
 
@@ -22,16 +23,20 @@ Game.prototype.start = function() {
 Game.prototype.drawAll = function(action) {
   this.bg.draw();
   this.pl.draw();
+  this.pl2.draw();
   this.bl.draw();
+  
 
 };
 
 
 
 Game.prototype.moveAll = function(action) {  
-  this.pl.move();
   this.bl.move();
+  this.pl.move();
+  this.pl2.move();
   this.pl.checkCollision(this.bl);
+  this.pl2.checkCollision(this.bl)
   
 };
 

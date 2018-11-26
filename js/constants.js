@@ -6,4 +6,8 @@ var KEY_DOWN = 40;
 var KEY_LEFT = 37;
 var KEY_SPACE = 32;
 
+var W = 87;
+var A = 65;
+var S = 83;
+var D = 68;
 

@@ -1,7 +1,7 @@
-function Player(ctx) {
+function Player2(ctx) {
   this.ctx = ctx;
 
-  this.x = 30;
+  this.x = 400;
   this.y = 400;
   this.y0 = this.y;
 
@@ -24,13 +24,13 @@ function Player(ctx) {
   this.setListeners();
 }
 
-Player.prototype.setListeners = function() {
+Player2.prototype.setListeners = function() {
   document.onkeydown = this.onKeyDown.bind(this);
   document.onkeyup = this.onKeyUp.bind(this);
 };
 
 
-Player.prototype.draw = function() {
+Player2.prototype.draw = function() {
   this.drawCount++;
 
   this.ctx.drawImage(
@@ -51,7 +51,7 @@ Player.prototype.draw = function() {
   }
 };
 
-Player.prototype.move = function() {
+Player2.prototype.move = function() {
   this.vy += this.g;
   this.y += this.vy;
 
@@ -63,7 +63,7 @@ Player.prototype.move = function() {
   }
 };
 
-Player.prototype.animate = function() {
+Player2.prototype.animate = function() {
   if (this.isJumping()) { return; }
 
   if (++this.img.frameIndex > 2) {
@@ -72,7 +72,7 @@ Player.prototype.animate = function() {
 
 };
 
-Player.prototype.jump = function() {
+Player2.prototype.jump = function() {
   if (this.isJumping()) {
     return;
   }
@@ -81,19 +81,19 @@ Player.prototype.jump = function() {
   this.vy -= 10;
 }
 
-Player.prototype.isJumping = function() {
+Player2.prototype.isJumping = function() {
   return this.y < this.y0;
 };
 
-Player.prototype.onKeyDown = function(event) {
+Player2.prototype.onKeyDown = function(event) {
   switch (event.keyCode) {
-    case KEY_RIGHT:
+    case D:
       this.vx = 10;
       break;
-    case KEY_LEFT:
+    case A:
       this.vx = -10;
       break;
-    case KEY_UP:
+    case W:
       this.jump();
       break;
     case KEY_SPACE:
@@ -102,20 +102,20 @@ Player.prototype.onKeyDown = function(event) {
   }
 };
 
-Player.prototype.onKeyUp = function(event) {
+Player2.prototype.onKeyUp = function(event) {
   switch (event.keyCode) {
-    case KEY_RIGHT:
-    case KEY_LEFT:
+    case D:
+    case A:
       this.vx = 0;
       break;
   }
 };
 
-// Player.prototype.collide = function(ball) {
+// Player2.prototype.collide = function(ball) {
 //   return (this.x + this.width === ball.x || ball.x + ball.width === this.x);
 // }
 
-Player.prototype.checkCollision = function(ball) {
+Player2.prototype.checkCollision = function(ball) {
   
 
     if(ball.x + ball.r > this.x &&

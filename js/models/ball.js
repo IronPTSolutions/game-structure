@@ -2,14 +2,14 @@ function Ball(ctx, x, y) {
   this.ctx = ctx;
 
 
-  this.r = 10;
+  this.r = 20;
   this.x = x || 200;
   this.y = y || 200;
 
-  this.vx = 0;
+  this.vx = 2;
   this.vy = 0;
 
-  this.g = 0.1;
+  this.g = 0.05;
 }
 
 
