@@ -11,3 +11,5 @@ var A = 65;
 var S = 83;
 var D = 68;
 
+var FRICTION = 0.9;
+

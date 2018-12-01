@@ -12,7 +12,7 @@ function Background(ctx) {
   this.h = this.ctx.canvas.height;
 
   this.img = new Image();
-  this.img.src = "https://chupacdn.s3.amazonaws.com/catalog/product/cache/5/thumbnail/1280x/17f82f742ffe127f42dca9de82fb58b1/6/-/6-vector-game-backgrounds-8003_imgs_8003_2.png";
+  this.img.src = "/Users/Mario/Documents/IronHack/game-structure/img/game-backgound (1).jpg";
 }
 
 
