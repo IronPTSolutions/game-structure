@@ -23,24 +23,24 @@ Ball.prototype.draw = function() {
   this.ctx.fill();
   this.ctx.closePath();
 
-  if(this.x + this.vx > this.canvas.width - this.r || this.x + this.vx < this.r) {
+  if(this.x + this.vx > this.canvas.width - this.r || this.x + this.vx < this.r) {  //Colisiones con los laterales del canvas.
     
     this.vx = -this.vx;
 }
 
-if(this.y + this.vy > 600 - this.r || this.y + this.vy < this.r) {
+if(this.y + this.vy > 600 - this.r || this.y + this.vy < this.r) {   //Colisiones con las partes de arriba y abajo del canvas.
     
   this.vy = -this.vy;
 } 
 
-if(this.x + this.vx < 100 && this.y + this.vy < 300 && this.y + this.vy > 280) {
+if(this.x + this.vx < 100 && this.y + this.vy < 300 && this.y + this.vy > 280) {  //Colision con el larguero izquierdo.
   
   this.vx = -this.vx;
   this.vy = -this.vy
 
 }
 
-if (this.x + this.vx > 1100 && this.y + this.vy < 300 && this.y + this.vy > 280) {
+if (this.x + this.vx > 1100 && this.y + this.vy < 300 && this.y + this.vy > 280) {  // Colision con el larguero derecho.
   
   this.vx = -this.vx;
   this.vy = -this.vy;
@@ -59,18 +59,18 @@ Ball.prototype.move = function() {
 }
 
 Ball.prototype.goal = function () {
-  if (this.x + this.r < 100 && this.y + this.r > 300) {
-   document.getElementById('player1').innerHTML++
+  if (this.x + this.r < 100 && this.y + this.r > 300) { //Marcador del player1.
+   document.getElementById('player2').innerHTML++
     
-    this.vx = 2;
+    this.vx = -2;  //Reinicio de la posicion de la bola tras el gol.
     this.vy = 0;
     
     this.x = 600;
     this.y = 200;
-} else if (this.x + this.r > 1100 && this.y + this.r > 300) {
- document.getElementById('player2').innerHTML++
+} else if (this.x + this.r > 1100 && this.y + this.r > 300) { //Marcador del player2.
+ document.getElementById('player1').innerHTML++
 
-  this.vx = -2; 
+  this.vx = 2; 
   this.vy = 0;
   
   this.x = 600;
@@ -81,15 +81,7 @@ Ball.prototype.goal = function () {
 
 }
 
-Ball.prototype.checkGameOver = function() {
-  if (document.getElementById('player1').innerHTML === 3) {
-    console.log('Game Over, Player 1 Wins');
-    document.location.reload();
-  } else if (document.getElementById('player2').innerHTML === 3) {
-    console.log('Game Over, Player 2 Wins');
-    document.location.reload();
-  }
-}
+
 
 
 

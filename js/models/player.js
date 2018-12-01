@@ -1,7 +1,7 @@
-function Player(ctx) {
+function Player(ctx,x,src, left, right, up) {
   this.ctx = ctx;
 
-  this.x = 200;
+  this.x = x;
   this.y = 500;
   this.y0 = this.y;
 
@@ -11,7 +11,7 @@ function Player(ctx) {
   this.g = 0.5;
 
   this.img = new Image();
-  this.img.src = "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707";
+  this.img.src = src;
   this.img.frames = 1;
   this.img.frameIndex = 1;
 
@@ -21,10 +21,9 @@ function Player(ctx) {
 
   this.drawCount = 0;
 
-  this.left = this.x;
-  this.right = this.left + this.w;
-  this.top = this.y;
-  this.bottom = this.top + this.h;
+  this.left = left;
+  this.right = right;
+  this.up = up; 
 }
 
 Player.prototype.setListeners = function() {
@@ -51,7 +50,7 @@ Player.prototype.draw = function() {
     this.h
   );
 
-  if(this.x > this.canvas.width - this.w || this.x < this.w) {
+  if(this.x > this.canvas.width - this.w || this.x < this.w) { //Colisiones del jugador con los laterales del canvas.
    
     this.vx = -this.vx
   }
@@ -109,18 +108,15 @@ Player.prototype.isJumping = function() {
 
 Player.prototype.onKeyDown = function(event) {
   
-  switch (event.keyCode) {
-    case KEY_RIGHT:
+  switch (event.keyCode) { 
+    case this.right:
       this.vx = 10;
       break;
-    case KEY_LEFT:
+    case this.left:
       this.vx = -10;
       break;
-    case KEY_UP:
+    case this.up:
       this.jump();
-      break;
-    case KEY_SPACE:
-      this.shoot();
       break;
   }
 };
@@ -128,55 +124,51 @@ Player.prototype.onKeyDown = function(event) {
 Player.prototype.onKeyUp = function(event) {
   
   switch (event.keyCode) {
-    case KEY_RIGHT:
-    case KEY_LEFT:
+    case this.right:
+    case this.left:
       this.vx = 0;
       break;
   }
 };
 
-Player.prototype.checkCollision = function(ball) {
+Player.prototype.checkCollision = function(player2) { //Colisiones del jugador con el balón.
   
-  if(ball.x + ball.r >= this.x &&
-      ball.x - ball.r <= (this.x + this.w) &&
-      ball.y + ball.r >=  this.y &&
-      ball.y - ball.r <= (this.y + this.h)) 
+  if(player2.x + player2.r >= this.x &&
+      player2.x - player2.r <= (this.x + this.w) &&
+      player2.y + player2.r >=  this.y &&
+      player2.y - player2.r <= (this.y + this.h)) 
     {
-      // if (ball.x + ball.r > this.x + (this.w / 2)) {
-      //   ball.vy = -ball.vy
-      // } else if (ball.x + ball.r < this.x + (this.w / 2)) {
-      //   ball.vy = -ball.vy
-      //   ball.vx = -ball.vx }  Para ver con que mitad de la cabeza le da
-  
 
-      if (ball.x + ball.r <= this.x + (this.w / 2)) {
-        ball.vx = -3
+      if (player2.x + player2.r <= this.x + (this.w / 2)) {
+        player2.vx = -3
       } else {
-        ball.vx = +3
+        player2.vx = +3
       }
 
-      if (ball.y + ball.r < this.top) {
-        ball.vy = -3
-      } else if (ball.y + ball.r > this.bottom) {
-        ball.vy = -ball.vy
+      if (player2.y + player2.r < this.top) {
+        player2.vy = -3
+      } else if (player2.y + player2.r > this.bottom) {
+        player2.vy = -player2.vy
       }
     }
   }
   
 
-Player.prototype.collideWithPlayer = function (ball) {
+Player.prototype.collideWithPlayer = function (player2) { //Colisiones entre los dos jugadores.
   
-  if (this.x < ball.x + ball.w &&
-    this.x + this.w > ball.x &&
-    this.y < ball.y + ball.h &&
-    this.h + this.y > ball.y){
-
-     if (this.x + this.w < ball.x + ball.h) {
-      this.x = ball.x - this.w;
-     } else if (this.x + this.h < ball.x + ball.w) {
-       this.x = ball.x + ball.w + this.w;
-     } 
+  if (this.x < player2.x + player2.w &&
+    this.x + this.w > player2.x &&
+    this.y < player2.y + player2.h &&
+    this.h + this.y > player2.y){
+ 
+     if (this.x + this.w < player2.x + player2.h) {
+      this.x = player2.x - this.w;
+  
+     } else if (this.x + this.h < player2.x + player2.w) {
+       this.x = player2.x + player2.w + this.w;
       
+     } 
+
       
 
       }

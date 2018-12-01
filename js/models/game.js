@@ -4,8 +4,8 @@ function Game(canvasElement) {
   this.intervalId = undefined;
 
   this.bg = new Background(this.ctx);
-  this.pl = new Player(this.ctx,);
-  this.pl2 = new Player2(this.ctx)
+  this.pl = new Player(this.ctx,200, "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707", KEY_LEFT, KEY_RIGHT, KEY_UP);
+  this.pl2 = new Player(this.ctx, 900, "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707", A,D,W);
   this.bl = new Ball(this.ctx);
   
 
@@ -55,6 +55,7 @@ Game.prototype.moveAll = function(action) {
   this.pl2.move();  
 
   this.bl.goal();
+  
 
 };
 
@@ -64,7 +65,14 @@ Game.prototype.moveAll = function(action) {
 
 
 Game.prototype.checkGameOver = function() {
-  
+  if (document.getElementById('player1').innerHTML > 2) {
+    alert('Game Over, Player 1 wins ');
+    
+    document.location.reload();
+  } else if (document.getElementById('player2').innerHTML > 2) {
+    alert('Game Over, Player 2 Wins')
+    document.location.reload()
+  }
 };
 
 Game.prototype.gameOver = function() {

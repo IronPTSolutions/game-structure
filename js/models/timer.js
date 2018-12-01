@@ -1,8 +1,11 @@
-function Timer(ctx) {
+// function Timer(ctx) {
+//   this.ctx = ctx
+// }
 
-this.myVar = setInterval(myTimer, 1000);
-this.d = new Date();
-document.getElementById("timer").innerHTML = d.toLocaleTimeString();
-}
+//   this.seconds = 0;
+// setInterval(function() {
+// document.getElementById('timer').innerHTML = 60++;
+// }, 1000);
+
 
 
