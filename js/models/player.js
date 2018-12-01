@@ -1,7 +1,7 @@
 function Player(ctx) {
   this.ctx = ctx;
 
-  this.x = 100;
+  this.x = 200;
   this.y = 500;
   this.y0 = this.y;
 
@@ -149,19 +149,19 @@ Player.prototype.checkCollision = function(ball) {
       //   ball.vx = -ball.vx }  Para ver con que mitad de la cabeza le da
   
 
-     if (ball.x + ball.r > this.left) {
-       ball.vx = -ball.vx
-     }
-     if (ball.x - ball.r < this.right) {
-       ball.vx = +3
-     }
-     if (ball.y + ball.r < this.top) {
-       ball.vy = -3
-     }
-     if (ball.y + ball.r > this.bottom) {
-       ball.vy = -ball.vy
-     }
-    }}
+      if (ball.x + ball.r <= this.x + (this.w / 2)) {
+        ball.vx = -3
+      } else {
+        ball.vx = +3
+      }
+
+      if (ball.y + ball.r < this.top) {
+        ball.vy = -3
+      } else if (ball.y + ball.r > this.bottom) {
+        ball.vy = -ball.vy
+      }
+    }
+  }
   
 
 Player.prototype.collideWithPlayer = function (ball) {

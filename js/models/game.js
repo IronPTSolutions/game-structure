@@ -4,7 +4,7 @@ function Game(canvasElement) {
   this.intervalId = undefined;
 
   this.bg = new Background(this.ctx);
-  this.pl = new Player(this.ctx);
+  this.pl = new Player(this.ctx,);
   this.pl2 = new Player2(this.ctx)
   this.bl = new Ball(this.ctx);
   
@@ -55,6 +55,7 @@ Game.prototype.moveAll = function(action) {
   this.pl2.move();  
 
   this.bl.goal();
+
 };
 
 

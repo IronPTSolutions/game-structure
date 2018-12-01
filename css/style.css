@@ -3,7 +3,7 @@
 .scoresheet {
   width: 1200px;
   height: 200px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Press Start 2P';
   font-size: 30px;
   background-image: url('/Users/Mario/Documents/IronHack/game-structure/img/New Project.jpg');
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@
 
 #player1 {
   margin-top: 100px;
-  margin-left: 170px;
+  margin-left: 165px;
   color: orange
   
   
@@ -22,7 +22,13 @@
 
 #player2 {
  float: right;
- margin-right: 170px;
+ margin-right: 162px;
  margin-top: -35px;
  color: orange
+}
+
+#timer {
+  margin-left: 720px;
+  margin-top: -115px;
+  color: white
 }

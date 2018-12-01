@@ -6,7 +6,7 @@ function Ball(ctx, x, y) {
   this.x = x || 600;
   this.y = y || 200;
 
-  this.vx = 1;
+  this.vx = 0;
   this.vy = 0;
 
   this.g = 0.1;
@@ -44,7 +44,7 @@ if (this.x + this.vx > 1100 && this.y + this.vy < 300 && this.y + this.vy > 280)
   
   this.vx = -this.vx;
   this.vy = -this.vy;
-} // solo funciona la primera vez
+} 
 
 this.x += this.vx;
 this.y += this.vy;
@@ -59,7 +59,6 @@ Ball.prototype.move = function() {
 }
 
 Ball.prototype.goal = function () {
-  // this.player1Score = document.getElementById('player1').value = '0'
   if (this.x + this.r < 100 && this.y + this.r > 300) {
    document.getElementById('player1').innerHTML++
     
@@ -69,14 +68,16 @@ Ball.prototype.goal = function () {
     this.x = 600;
     this.y = 200;
 } else if (this.x + this.r > 1100 && this.y + this.r > 300) {
-  document.getElementById('player2').innerHTML++
+ document.getElementById('player2').innerHTML++
 
-  this.vx = -2;
+  this.vx = -2; 
   this.vy = 0;
   
   this.x = 600;
   this.y = 200;
 }
+
+
 
 }
 

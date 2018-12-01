@@ -1,7 +1,7 @@
 function Player2(ctx) {
   this.ctx = ctx;
 
-  this.x = 400;
+  this.x = 900;
   this.y = 500;
   this.y0 = this.y;
 
@@ -20,6 +20,11 @@ function Player2(ctx) {
   this.score = 0;
 
   this.drawCount = 0;
+
+  this.left = this.x;
+  this.right = this.left + this.w;
+  this.top = this.y;
+  this.bottom = this.top + this.h;
 }
 
 
@@ -61,6 +66,7 @@ Player2.prototype.onKeyUp = function(event) {
 
 
 Player2.prototype.draw = function() {
+  this.canvas = document.getElementById("my-canvas");
   this.drawCount++;
 
   this.ctx.drawImage(
@@ -75,6 +81,11 @@ Player2.prototype.draw = function() {
     this.h
   );
 
+  if(this.x > this.canvas.width - this.w || this.x < this.w) {
+   
+    this.vx = -this.vx
+  }
+  
   if (this.drawCount % 10 === 0) {
     this.drawCount = 0;
     this.animate();
@@ -129,11 +140,22 @@ Player2.prototype.checkCollision = function(ball) {
       ball.y + ball.r >=  this.y &&
       ball.y - ball.r <= (this.y + this.h)) 
     {   
-      if (ball.x + ball.r > this.x + (this.w / 2)) {
+      // if (ball.x + ball.r > this.x + (this.w / 2)) {
+      //   ball.vy = -ball.vy
+      // } else if (ball.x + ball.r < this.x + (this.w / 2)) {
+      //   ball.vy = -ball.vy
+      //   ball.vx = -ball.vx
+      // }
+      if (ball.x + ball.r <= this.x + (this.w / 2)) {
+        ball.vx = -3
+      } else {
+        ball.vx = +3
+      }
+
+      if (ball.y + ball.r < this.top) {
+        ball.vy = -3
+      } else if (ball.y + ball.r > this.bottom) {
         ball.vy = -ball.vy
-      } else if (ball.x + ball.r < this.x + (this.w / 2)) {
-        ball.vy = -ball.vy
-        ball.vx = -ball.vx
       }
   }
   
