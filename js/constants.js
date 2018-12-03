@@ -15,4 +15,3 @@ var FRICTION = 0.9;
 
 var INITIAL_BALL_SPEED = 5;
 var BALL_SPEED = 3;
-

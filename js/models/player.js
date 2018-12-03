@@ -160,10 +160,10 @@ Player.prototype.collideWithPlayer = function(ball) {
   }
 };
 
-Player.prototype.getScore = function () {
+Player.prototype.getScore = function() {
   return parseInt(this.score.textContent);
-}
+};
 
-Player.prototype.setScore = function (score) {
+Player.prototype.setScore = function(score) {
   this.score.textContent = score;
-}
+};

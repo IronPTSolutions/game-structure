@@ -66,12 +66,11 @@ Ball.prototype.draw = function() {
 };
 
 Ball.prototype.move = function() {
-
-  // if (this.drawCount % 10 === 0 && this.vx !== 0 && this.vy !== 0) {
-  //   this.vx = (this.vx > 0) ? BALL_SPEED : -BALL_SPEED;
-  //   this.vy = (this.vy > 0) ? BALL_SPEED : -BALL_SPEED;
-  //   this.drawCount = 0;
-  // }
+  if (this.drawCount % 10 === 0 && this.vx !== 0 && this.vy !== 0) {
+    this.vx = (this.vx > 0) ? BALL_SPEED : -BALL_SPEED;
+  
+    this.drawCount = 0;
+  }
 
   this.vy += this.g;
 
