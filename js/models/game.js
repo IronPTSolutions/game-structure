@@ -4,22 +4,47 @@ function Game(canvasElement) {
   this.intervalId = undefined;
 
   this.bg = new Background(this.ctx);
-  this.pl = new Player(this.ctx,200, "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707", KEY_LEFT, KEY_RIGHT, KEY_UP);
-  this.pl2 = new Player(this.ctx, 900, "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707", A,D,W);
+  this.pl = new Player(this.ctx,200, "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707", KEY_LEFT, KEY_RIGHT, KEY_UP, 'player1');
+  this.pl2 = new Player(this.ctx, 900, "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707", A, D, W, 'player2');
   this.bl = new Ball(this.ctx);
-  
+
+  this.timer = document.getElementById("timer")
 
   this.setListeners();
 }
 
-Game.prototype.start = function() {
-  this.intervalId = setInterval(function() {
-    this.clear();
-    this.drawAll();
-    this.checkGameOver();
-    this.moveAll();    
-  }.bind(this), DRAW_INTERVAL_MS);
+Game.prototype.start = function(playerRigthSrc, playerLeftImageSrc) {
+  if (!this.intervalId) {
+    this.init(playerRigthSrc, playerLeftImageSrc);
+    this.intervalId = setInterval(function() {
+      this.clear();
+      this.drawAll();
+      this.checkGameOver();
+      this.moveAll(); 
+    }.bind(this), DRAW_INTERVAL_MS);
+
+    this.cronometherInterval = setInterval(function(){
+      this.timer.innerHTML--;
+      if (document.getElementById('timer').innerHTML < 0) {
+        if (document.getElementById('player1').innerHTML > document.getElementById('player2').innerHTML) {
+          alert('Game Over, Player 1 Wins')
+        } else if (document.getElementById('player1').innerHTML < document.getElementById('player2').innerHTML) {
+          alert('Game Over, Player 2 Wins!')
+        } else if (document.getElementById('player1').innerHTML === document.getElementById('player2').innerHTML) {
+          alert('Game Over, It´s a Tie!')
+        }
+      }
+  },1000);
+  }
 };
+
+Game.prototype.init = function() {
+  this.pl = new Player(this.ctx,200, "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707", KEY_LEFT, KEY_RIGHT, KEY_UP, 'player1');
+  this.pl2 = new Player(this.ctx, 900, "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707", A, D, W, 'player2');
+  this.bl = new Ball(this.ctx);
+  this.pl.getScore();
+  this.pl2.getScore();
+}
 
 Game.prototype.setListeners = function() {
   document.onkeydown = function(event) {
@@ -56,30 +81,19 @@ Game.prototype.moveAll = function(action) {
 
   this.bl.goal();
   
+  
 
 };
-
-
-
-
-
 
 Game.prototype.checkGameOver = function() {
-  if (document.getElementById('player1').innerHTML > 2) {
-    alert('Game Over, Player 1 wins ');
-    
+  if (this.pl.getScore() > 1) {
+    alert('Game Over, Player 1 wins ');   
+    // this.init();
     document.location.reload();
-  } else if (document.getElementById('player2').innerHTML > 2) {
+  } else if (this.pl.getScore() > 1) {
     alert('Game Over, Player 2 Wins')
-    document.location.reload()
-  }
-};
-
-Game.prototype.gameOver = function() {
-  clearInterval(this.intervalId);
-
-  if (confirm("GAME OVER! Play again?")) {
-    location.reload();
+    // this.init();
+    document.location.reload();
   }
 };
 
