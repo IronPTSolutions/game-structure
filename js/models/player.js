@@ -15,7 +15,7 @@ function Player(ctx, x, src, left, right, up, scoreId) {
   this.img.frames = 1;
   this.img.frameIndex = 1;
 
-  this.w = 70;
+  this.w = 80;
   this.h = 90;
   this.score = 0;
 
@@ -49,7 +49,7 @@ Player.prototype.draw = function() {
     this.h
   );
 
-  if (this.x > this.canvas.width - this.w || this.x < this.w) {
+  if (this.x > this.canvas.width - this.w || this.x + this.w < this.w) {
     //Colisiones del jugador con los laterales del canvas.
 
     this.vx = -this.vx;

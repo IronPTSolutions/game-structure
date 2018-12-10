@@ -4,34 +4,41 @@ function Game(canvasElement) {
   this.intervalId = undefined;
 
   this.bg = new Background(this.ctx);
-  this.pl = new Player(
-    this.ctx,
-    200,
-    "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707",
-    KEY_LEFT,
-    KEY_RIGHT,
-    KEY_UP,
-    "player1"
-  );
-  this.pl2 = new Player(
-    this.ctx,
-    900,
-    "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707",
-    A,
-    D,
-    W,
-    "player2"
-  );
+  this.pl = undefined;
+  this.pl2 = undefined;
   this.bl = new Ball(this.ctx);
+  
 
   this.timer = document.getElementById("timer");
+
+  $(".box img").click(this.onClickPlayerAvatar.bind(this));
+  this.$selectPlayerMenu = $("#character-selection");
+
+  this.playerRigthSrc = undefined;
+  this.playerLeftImageSrc = undefined;
 
   this.setListeners();
 }
 
-Game.prototype.start = function(playerRigthSrc, playerLeftImageSrc) {
+Game.prototype.onClickPlayerAvatar = function(event) {
+  var src = event.target.getAttribute("src");
+  if (!this.playerLeftImageSrc) {
+    this.playerLeftImageSrc = src;
+  } else {
+    this.playerRigthSrc = src;
+  }
+
+  if (this.playerRigthSrc && this.playerLeftImageSrc) {
+    this.$selectPlayerMenu.hide();
+    this.start();
+  }
+};
+
+Game.prototype.start = function() {
   if (!this.intervalId) {
-    this.init(playerRigthSrc, playerLeftImageSrc);
+    this.init();
+    this.playerLeftImageSrc = undefined;
+    this.playerRigthSrc = undefined;
     this.intervalId = setInterval(
       function() {
         this.clear();
@@ -70,19 +77,21 @@ Game.prototype.init = function() {
   this.pl = new Player(
     this.ctx,
     200,
-    "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707",
-    KEY_LEFT,
-    KEY_RIGHT,
-    KEY_UP,
+    // "https://vignette.wikia.nocookie.net/headsoccer/images/c/c7/Character01.png/revision/latest?cb=20150720195707",
+    this.playerLeftImageSrc,
+    A,
+    D,
+    W,
     "player1"
   );
   this.pl2 = new Player(
     this.ctx,
     900,
-    "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707",
-    A,
-    D,
-    W,
+    // "https://vignette.wikia.nocookie.net/headsoccer/images/1/1e/Character03.png/revision/latest?cb=20150720195707",
+    this.playerRigthSrc,
+    KEY_LEFT,
+    KEY_RIGHT,
+    KEY_UP,
     "player2"
   );
   this.bl = new Ball(this.ctx);
@@ -123,21 +132,23 @@ Game.prototype.moveAll = function(action) {
 };
 
 Game.prototype.checkGameOver = function() {
-  if (this.pl.getScore() > 1) {
+  // if (this.pl.getScore() > 1) {
+  if (document.getElementById("player1").innerHTML > 4) {
     alert("Game Over, Player 1 wins ");
     // this.init();
     document.location.reload();
-  } else if (this.pl.getScore() > 1) {
+    // } else if (this.pl.getScore() > 1) {
+  } else if (document.getElementById("player2").innerHTML > 4) {
     alert("Game Over, Player 2 Wins");
     // this.init();
     document.location.reload();
   }
 };
 
-Game.prototype.characterSelection = function() {
-  eve
-}
-
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 };
+
+
+
+
