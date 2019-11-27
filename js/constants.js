@@ -5,4 +5,14 @@ var KEY_RIGHT = 39;
 var KEY_DOWN = 40;
 var KEY_LEFT = 37;
 var KEY_SPACE = 32;
+var KEY_ENTER = 13;
 
+var W = 87;
+var A = 65;
+var S = 83;
+var D = 68;
+
+var FRICTION = 0.9;
+
+var INITIAL_BALL_SPEED = 5;
+var BALL_SPEED = 3;

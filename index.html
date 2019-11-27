@@ -1,18 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>repl.it</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
 
     <script src="js/constants.js"></script>
     <script src="js/models/background.js"></script>
+
     <script src="js/models/player.js"></script>
+    <script src="js/models/ball.js"></script>
+    <script src="js/models/timer.js"></script>
     <script src="js/models/game.js"></script>
     <script src="js/index.js"></script>
-
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.js"
+  integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+  crossorigin="anonymous"></script>
   </head>
   <body>
+      <iframe id="stream" volume="0.1" src="/Users/Mario/Documents/IronHack/game-structure/img/0917.mp3" type="audio/mp3" frameborder="0"></iframe>
+    <audio autoplay volume="0.1" loop>
+          <source src="/Users/Mario/Documents/IronHack/game-structure/img/UEFA Champions League official theme song (Hymne) Stereo HD.mp3" type="audio/mp3">
+        </audio>
+    <div id="start-screen">
+    <h1 id="title">HEAD SOCCER</h1>
+    </div>
+    
+    <ul id="character-selection">
+        <h1>CHARACTER SELECTION</h1>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/0/02/Character02.png/revision/latest?cb=20150720195707"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/1/18/Character16_1.png/revision/latest?cb=20151005033007"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/e/e0/Character19_1.png/revision/latest?cb=20151014043136"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/a/ac/Character17.png/revision/latest?cb=20150720195711"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/6/6c/Character07.png/revision/latest?cb=20150720195709"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/9/90/Character33.png/revision/latest?cb=20150607175903"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/c/cd/Character30.png/revision/latest?cb=20150607175902"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/8/87/Character28.png/revision/latest?cb=20151013094819"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/d/d4/Character35.png/revision/latest?cb=20150607175903"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/1/1a/Character37.png/revision/latest?cb=20150607175904"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/a/af/Character46.png/revision/latest?cb=20150607180248"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/d/da/Character48.png/revision/latest?cb=20150607180249"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/6/62/Character50.png/revision/latest?cb=20150623175004"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/d/d4/Character54.png/revision/latest?cb=20150623175005"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/e/ef/Character60.png/revision/latest?cb=20150918201120"></li>
+      <li class="box"><img src="https://vignette.wikia.nocookie.net/headsoccer/images/7/77/Character61.png/revision/latest?cb=20160115040639"></li>
+    </ul>
+    
+    
+    
+    
+    
+    
+    <div class="scoresheet">
+      <div id="player1">0</div>
+      <div id="player2">0</div>
+      <div id="timer">60</div>
+    </div>
+    <div id="character-select"></div>
     <canvas width="1200" height="600" id="my-canvas"></canvas>
   </body>
 </html>
